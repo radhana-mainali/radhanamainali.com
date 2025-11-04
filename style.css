@@ -1,4 +1,3 @@
-/* Reset & base setup */
 * {
   margin: 0;
   padding: 0;
@@ -7,35 +6,34 @@
 
 body {
   height: 100vh;
+  background: linear-gradient(to bottom, #0b0423, #3b0b61);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #0b0423, #3b0b61);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   position: relative;
 }
 
-/* Sparkle stars background */
-body::before {
+/* Star field */
+.stars::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(white 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.03;
-  animation: drift 60s linear infinite;
+  width: 200%; height: 200%;
+  background: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: twinkle 30s linear infinite;
+  opacity: 0.05;
   z-index: 0;
 }
 
-@keyframes drift {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
+@keyframes twinkle {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50px, -50px); }
 }
 
-/* Glowing swirl in background */
+/* Swirl glow */
 .swirl-background {
   position: absolute;
   width: 600px;
@@ -43,10 +41,10 @@ body::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
   border-radius: 50%;
-  animation: swirl 10s linear infinite;
-  filter: blur(40px);
+  animation: swirl 12s linear infinite;
+  filter: blur(60px);
   z-index: 1;
 }
 
@@ -55,27 +53,21 @@ body::before {
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Main text container */
+/* Centered text */
 .container {
   text-align: center;
   z-index: 2;
 }
 
-/* Typewriter + glowing text */
+/* Animated glowing typewriter */
 .typewriter {
   font-size: 3rem;
   font-weight: bold;
   color: #ffffff;
   white-space: nowrap;
-  overflow: hidden;
   border-right: 0.15em solid #ff89f0;
-  animation: typing 2.5s steps(20, end), blink-caret 0.75s step-end infinite;
-  text-shadow: 0 0 8px #ffb8f8, 0 0 20px #b56aff;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 13ch; }
+  animation: blink-caret 0.75s step-end infinite;
+  text-shadow: 0 0 10px #ffb8f8, 0 0 25px #b56aff;
 }
 
 @keyframes blink-caret {
