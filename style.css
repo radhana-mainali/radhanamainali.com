@@ -1,27 +1,71 @@
-/* Global styles */
-body {
+/* Reset & base setup */
+* {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom, #0b0423, #3b0b61);
+  box-sizing: border-box;
+}
+
+body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  background: linear-gradient(to bottom, #0b0423, #3b0b61);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
   position: relative;
 }
 
+/* Sparkle stars background */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.03;
+  animation: drift 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+/* Glowing swirl in background */
+.swirl-background {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: swirl 10s linear infinite;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+@keyframes swirl {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Main text container */
 .container {
   text-align: center;
   z-index: 2;
 }
 
-/* Glowing typewriter text */
+/* Typewriter + glowing text */
 .typewriter {
-  color: #fff;
   font-size: 3rem;
   font-weight: bold;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   border-right: 0.15em solid #ff89f0;
@@ -30,48 +74,11 @@ body {
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 12ch }
+  from { width: 0; }
+  to { width: 13ch; }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
+  from, to { border-color: transparent; }
   50% { border-color: #ff89f0; }
-}
-
-/* Swirl effect */
-.swirl-background::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 80%);
-  border-radius: 50%;
-  animation: swirl 10s infinite linear;
-  filter: blur(40px);
-  z-index: 1;
-}
-
-.swirl-background::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(#fff 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.1;
-  animation: twinkle 20s linear infinite;
-}
-
-@keyframes twinkle {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
-}
-
-@keyframes swirl {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
