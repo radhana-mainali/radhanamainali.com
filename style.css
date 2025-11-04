@@ -1,13 +1,60 @@
+/* Global styles */
 body {
-  font-family: system-ui, sans-serif;
   margin: 0;
   padding: 0;
-  background: #fafafa;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  background: linear-gradient(to bottom, #0b0423, #3b0b61);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-main {
+.container {
   text-align: center;
+  z-index: 2;
+}
+
+/* Glowing typewriter text */
+.typewriter {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid #ff89f0;
+  animation: typing 2.5s steps(20, end), blink-caret 0.75s step-end infinite;
+  text-shadow: 0 0 8px #ffb8f8, 0 0 20px #b56aff;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 12ch }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ff89f0; }
+}
+
+/* Swirl effect */
+.swirl-background::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 80%);
+  border-radius: 50%;
+  animation: swirl 10s infinite linear;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+@keyframes swirl {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
